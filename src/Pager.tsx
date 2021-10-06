@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, TextInput, Keyboard, I18nManager } from 'react-native';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
-import Animated, { Easing } from 'react-native-reanimated';
+import Animated, { EasingNode } from 'react-native-reanimated';
 import memoize from './memoize';
 
 import {
@@ -95,7 +95,7 @@ const SPRING_VELOCITY_SCALE = 1;
 
 const TIMING_CONFIG = {
   duration: 200,
-  easing: Easing.out(Easing.cubic),
+  easing: EasingNode.out(EasingNode.cubic),
 };
 
 export default class Pager<T extends Route> extends React.Component<Props<T>> {

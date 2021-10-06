@@ -73,12 +73,12 @@ export default class CustomIndicatorExample extends React.Component<{}, State> {
       2,
     ];
 
-    const scale = Animated.interpolate(position, {
+    const scale = Animated.interpolateNode(position, {
       inputRange,
       outputRange: inputRange.map(x => (Math.trunc(x) === x ? 2 : 0.1)),
     });
 
-    const opacity = Animated.interpolate(position, {
+    const opacity = Animated.interpolateNode(position, {
       inputRange,
       outputRange: inputRange.map(x => {
         const d = x - Math.trunc(x);
@@ -86,7 +86,7 @@ export default class CustomIndicatorExample extends React.Component<{}, State> {
       }),
     });
 
-    const translateX = Animated.interpolate(position, {
+    const translateX = Animated.interpolateNode(position, {
       inputRange: inputRange,
       outputRange: inputRange.map(x => {
         const i = Math.round(x);
@@ -94,7 +94,7 @@ export default class CustomIndicatorExample extends React.Component<{}, State> {
       }),
     });
 
-    const backgroundColor = Animated.interpolate(position, {
+    const backgroundColor = Animated.interpolateNode(position, {
       inputRange,
       outputRange: inputRange.map(x =>
         Animated.color(...navigationState.routes[Math.round(x)].color)

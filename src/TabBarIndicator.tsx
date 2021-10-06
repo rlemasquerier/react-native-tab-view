@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, I18nManager, StyleProp, ViewStyle } from 'react-native';
-import Animated, { Easing } from 'react-native-reanimated';
+import Animated, { EasingNode } from 'react-native-reanimated';
 
 import memoize from './memoize';
 import { Route, SceneRendererProps, NavigationState } from './types';
@@ -14,7 +14,7 @@ export type Props<T extends Route> = SceneRendererProps & {
   getTabWidth: GetTabWidth;
 };
 
-const { interpolate, multiply, Extrapolate } = Animated;
+const { interpolateNode, multiply, Extrapolate } = Animated;
 
 export default class TabBarIndicator<T extends Route> extends React.Component<
   Props<T>
@@ -42,7 +42,7 @@ export default class TabBarIndicator<T extends Route> extends React.Component<
       Animated.timing(this.opacity, {
         duration: 150,
         toValue: 1,
-        easing: Easing.in(Easing.linear),
+        easing: EasingNode.in(EasingNode.linear),
       }).start();
     }
   };
@@ -65,7 +65,7 @@ export default class TabBarIndicator<T extends Route> extends React.Component<
         return [...acc, acc[i - 1] + getTabWidth(i - 1)];
       }, []);
 
-      const transalteX = interpolate(position, {
+      const transalteX = interpolateNode(position, {
         inputRange,
         outputRange,
         extrapolate: Extrapolate.CLAMP,
@@ -84,7 +84,7 @@ export default class TabBarIndicator<T extends Route> extends React.Component<
       const inputRange = routes.map((_, i) => i);
       const outputRange = inputRange.map(getTabWidth);
 
-      return interpolate(position, {
+      return interpolateNode(position, {
         inputRange,
         outputRange,
         extrapolate: Extrapolate.CLAMP,

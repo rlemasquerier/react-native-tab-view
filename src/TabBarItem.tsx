@@ -53,7 +53,7 @@ export default class TabBarItem<T extends Route> extends React.Component<
       if (routes.length > 1) {
         const inputRange = routes.map((_, i) => i);
 
-        return Animated.interpolate(position, {
+        return Animated.interpolateNode(position, {
           inputRange,
           outputRange: inputRange.map(i => (i === tabIndex ? 1 : 0)),
         });
@@ -67,7 +67,7 @@ export default class TabBarItem<T extends Route> extends React.Component<
     if (routes.length > 1) {
       const inputRange = routes.map((_: Route, i: number) => i);
 
-      return Animated.interpolate(position, {
+      return Animated.interpolateNode(position, {
         inputRange,
         outputRange: inputRange.map((i: number) => (i === tabIndex ? 0 : 1)),
       });
